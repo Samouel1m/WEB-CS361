@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration — CS 361 CBU</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    header { text-align: center; margin-bottom: 2.5rem; }
+    header h1 { font-size: 2rem; color: #38bdf8; letter-spacing: 1px; }
+    header p { color: #94a3b8; margin-top: 0.4rem; font-size: 0.95rem; }
+
+    main { max-width: 760px; margin: 0 auto; }
+
+    form { display: flex; flex-direction: column; gap: 1.8rem; }
+
+    fieldset {
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 1.5rem;
+      background: #1e293b;
+    }
+
+    legend {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #38bdf8;
+      padding: 0 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 1.2rem;
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+    .form-group.full-width { grid-column: 1 / -1; }
+
+    label { font-size: 0.875rem; color: #94a3b8; font-weight: 500; }
+    label span.req { color: #f87171; margin-left: 2px; }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="number"],
+    input[type="file"],
+    select,
+    textarea {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      color: #e2e8f0;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.9rem;
+      width: 100%;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #38bdf8;
+    }
+
+    input[type="file"] { padding: 0.4rem 0.75rem; cursor: pointer; }
+
+    .radio-group, .checkbox-group {
+      display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.4rem;
+    }
+
+    .radio-group label, .checkbox-group label {
+      display: flex; align-items: center; gap: 0.4rem;
+      cursor: pointer; color: #e2e8f0; font-size: 0.9rem;
+    }
+
+    input[type="radio"], input[type="checkbox"] {
+      accent-color: #38bdf8; width: 1rem; height: 1rem;
+    }
+
+    textarea {
+      resize: vertical; min-height: 100px; font-family: inherit;
+    }
+
+    .btn-row {
+      display: flex; gap: 1rem; justify-content: flex-end;
+      border: none; padding: 0;
+    }
+
+    .btn-row legend { display: none; }
+
+    button[type="submit"], button[type="reset"] {
+      padding: 0.65rem 2rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    button[type="submit"] { background: #38bdf8; color: #0f172a; }
+    button[type="submit"]:hover { background: #0ea5e9; transform: translateY(-1px); }
+    button[type="reset"] { background: #334155; color: #e2e8f0; }
+    button[type="reset"]:hover { background: #475569; }
+
+    footer {
+      text-align: center; margin-top: 2.5rem;
+      color: #475569; font-size: 0.82rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Student Registration</h1>
+    <p>CS 361 — Introduction to Web Programming | Copperbelt University</p>
+  </header>
+
+  <main>
+    <form action="#" method="POST" enctype="multipart/form-data">
+
+      <!-- FIELDSET 1: Personal Details -->
+      <fieldset>
+        <legend>Personal Details</legend>
+        <div class="form-grid">
+
+          <div class="form-group full-width">
+            <label for="fullname">Full Name <span class="req">*</span></label>
+            <input type="text" id="fullname" name="fullname"
+              placeholder="e.g. Musonda Banda"
+              required autocomplete="name">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address <span class="req">*</span></label>
+            <input type="email" id="email" name="email"
+              placeholder="student@cbu.ac.zm"
+              required autocomplete="email">
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone"
+              placeholder="+260 97 1234567" autocomplete="tel">
+          </div>
+
+          <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" max="2007-12-31">
+          </div>
+
+          <div class="form-group">
+            <label>Gender</label>
+            <div class="radio-group">
+              <label><input type="radio" name="gender" value="male"> Male</label>
+              <label><input type="radio" name="gender" value="female"> Female</label>
+              <label><input type="radio" name="gender" value="other"> Other</label>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="photo">Profile Photo</label>
+            <input type="file" id="photo" name="photo" accept="image/*">
+          </div>
+
+        </div>
+      </fieldset>
+
+      <!-- FIELDSET 2: Academic Details -->
+      <fieldset>
+        <legend>Academic Details</legend>
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label for="student-id">Student ID <span class="req">*</span></label>
+            <input type="text" id="student-id" name="student_id"
+              pattern="[A-Z]{2}[0-9]{6}"
+              placeholder="e.g. CS123456"
+              title="Two uppercase letters followed by six digits (e.g. CS123456)"
+              required autocomplete="off">
+          </div>
+
+          <div class="form-group">
+            <label for="programme">Programme <span class="req">*</span></label>
+            <select id="programme" name="programme" required>
+              <option value="">-- Select Programme --</option>
+              <option value="CS">Computer Science (CS)</option>
+              <option value="IT">Information Technology (IT)</option>
+              <option value="IS">Information Systems (IS)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="year">Year of Study</label>
+            <input type="number" id="year" name="year"
+              min="1" max="5" placeholder="1 – 5">
+          </div>
+
+          <div class="form-group">
+            <label>Specialisation</label>
+            <div class="checkbox-group">
+              <label><input type="checkbox" name="specialisation" value="web"> Web</label>
+              <label><input type="checkbox" name="specialisation" value="security"> Security</label>
+              <label><input type="checkbox" name="specialisation" value="ai"> AI</label>
+              <label><input type="checkbox" name="specialisation" value="networks"> Networks</label>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="about">Tell Us About Yourself <span class="req">*</span></label>
+            <textarea id="about" name="about" rows="4"
+              placeholder="Write a short introduction about yourself, your interests and goals..."
+              required></textarea>
+          </div>
+
+        </div>
+      </fieldset>
+
+      <!-- FIELDSET 3: Actions -->
+      <fieldset class="btn-row">
+        <legend>Form Actions</legend>
+        <button type="reset">Clear Form</button>
+        <button type="submit">Register</button>
+      </fieldset>
+
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Copperbelt University — School of ICT | CS 361 Lab 4 — Part A</p>
+  </footer>
+
+</body>
+</html>
